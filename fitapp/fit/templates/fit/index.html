@@ -1,0 +1,57 @@
+{% extends "fit/base.html" %}
+
+{% block content %}
+    <div>
+        <div>
+            <h1>BF Calculator: hip entry for women only</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Calculate</button>
+            </form>
+    
+            {% if bfResult %}
+                <div>
+                    <p>Body Fat Result: {{ bfResult }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h1>Progress Input</h1>
+            <form method = "POST" class="post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ progress.as_p }}
+                <button type="submit" class="save btn btn-default">Save</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h2>Table</h2>
+            <table>
+                <style>table, th, td {border: 1px solid black;}</style>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>date</th>
+                        <th>bf</th>
+                        <th>weight</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.bodyFat }}</td>
+                    <td>{{ item.weight }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    
+{% endblock content %}
