@@ -4,7 +4,7 @@
     <div>
         <div>
             <h1>BF Calculator: hip entry for women only</h1>
-            <form method="POST">
+            <form method="POST" action="">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Calculate</button>
@@ -21,7 +21,7 @@
     <div>
         <div>
             <h1>Progress Input</h1>
-            <form method = "POST" class="post-form" enctype="multipart/form-data">
+            <form method = "POST" class="post-form" enctype="multipart/form-data"> 
                 {% csrf_token %}
                 {{ progress.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>

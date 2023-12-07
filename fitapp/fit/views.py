@@ -54,6 +54,6 @@ class Index(View):
         
 
         context = {'bfResult': bfResult, 'form': form, 'progress': progress_form}
-        return render(request, 'fit/result.html', context)
+        return render(request, 'fit/index.html', context)
 
     
