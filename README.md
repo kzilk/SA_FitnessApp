@@ -1,7 +1,7 @@
 # SA_FitnessApp
 This is an application that can be used by an individual to track their progress when it comes to fitness and training, current description and details are based on the current incomplete application.
 
-As a note, in it's current iteration, the page renders a 'POST' page upon submission requiring you to resubmit or return to the http://127.0.0.1:8000/ page. 
+As a note, in it's current iteration, the page will state sections you are not yet using have required inputs needed, and when inputting progress, the page will load a blank table. Reloading the page or resbumitting corrects the table to show all entries
 
 REQUIREMENTS
   Django and Python
@@ -20,11 +20,12 @@ TO USE
 
   Body Fat Calculator
     To use, enter in your measurments for the relavent parts in inches, as the header says, the hip entry is for women only and should be entered as '0' if you are a man.
-    Once filled, press enter and the page will load and display your body fat percentage in bold.
-    To return, press the back icon in your browser or re-enter '127.0.0.1:8000'
+    Once filled, click 'Calculate' and your body fat percentage will be displayed. Note, it will state that the fields under Progress Input are required but this may be disregarded.
+    
 
   Progress Input
-    Here, you enter your bodyfat percentage which you can get from the above function and your current weight. Once dont click the Save button and it will load a page stating 'None'. To return, press the back icon in your browser or re-enter '127.0.0.1:8000'
+    Here, you enter your bodyfat percentage which you can get from the above function and your current weight. Once done, click 'Save' and the page will load a blank table, regardless of other entries, and ask for required inputs under the BF Calculator entry. Please reenter the URL '127.0.0.1:8000' and it will be displayed in full.
+        NOTE: do not refresh the page as that will resubmit the form resulting in duplicate entries
 
   Table
     This table will load automatically with the data you inputed in the previous section. the id is auto-created as a way to give each entry a unique identifier and the date is automatically set based on when you save your input. 
@@ -32,7 +33,7 @@ TO USE
 
 
 TO BE CORRECTED
-  First correction point is to not require a POST screen to display the bodyfat percentage or that loads when the input is saved for a more streamlined use of the application
+  First correction point is to not require entries on sections not currently used, and not require resetting the page to view new table entries. 
 
 TO BE ADDED
   Additional input section and table to track lifting performances. Current table may be updated to include these markers or a new one may be entered below
