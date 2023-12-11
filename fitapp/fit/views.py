@@ -1,22 +1,25 @@
 from django.shortcuts import render
 from django.views import View
-from .forms import bfCalcForm, progress
-from .models import progressChart
+from .forms import bfCalcForm, progressForm, liftForm
+from .models import progressModel, liftModel
 import math
     
 class Index(View):
     def get(self, request):
         form = bfCalcForm()
-        prog = progress()
-        data = progressChart.objects.all()
-        print(data)
-        context = {'form':form, 'progress':prog, 'data':data}       
+        weightProg = progressForm()
+        liftProg = liftForm()
+        weight_data = progressModel.objects.all()
+        print(weight_data)
+        lift_data = liftModel.objects.all()
+        print(lift_data)
+        context = {'form':form, 'progress':weightProg, 'lifts':liftProg, 'weight_data':weight_data, 'lift_data':lift_data}       
         return render(request, 'fit/index.html', context) 
    
-    def post(self, request):
-        form = bfCalcForm(request.POST)
+    def post(self, request): 
         bfResult = None
-
+        
+        form = bfCalcForm(request.POST)
         if form.is_valid():
             #process bfCalc data and perform calculations
             bfHeight = int(form.cleaned_data['height'])
@@ -42,17 +45,25 @@ class Index(View):
             print("Form is not valid")
             print(form.errors)
             
-        #handle update progress    
-        progress_form = progress(request.POST)
+       
+        #handle update weight progress    
+        progress_form = progressForm(request.POST)
         if progress_form.is_valid():
             print('Progress Valid')
             progress_form.save() #save to database
         else:
             print('Progress invalid')
             print(progress_form.errors)
-        
-
-        context = {'bfResult': bfResult, 'form': form, 'progress': progress_form}
-        return render(request, 'fit/index.html', context)
-
+            
+        #handle update lift progress
+        lift_form = liftForm(request.POST)
+        if lift_form.is_valid():
+            print('lift valid')
+            lift_form.save()
+        else:
+            print('Lift invalid')
+            print(lift_form.errors)
     
+
+        context = {'bfResult': bfResult, 'form': form, 'progress': progress_form, 'lifts': lift_form}
+        return render(request, 'fit/index.html', context)

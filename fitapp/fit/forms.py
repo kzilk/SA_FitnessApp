@@ -1,13 +1,19 @@
 from django import forms
-from fit.models import progressChart
+from fit.models import progressModel, liftModel
 
 class bfCalcForm(forms.Form):
     height = forms.FloatField()
     waist = forms.FloatField()
     neck = forms.FloatField()
-    hips = forms.FloatField()
+    hips = forms.FloatField(initial=0.0)
     
-class progress(forms.ModelForm):
+class progressForm(forms.ModelForm):
     class Meta:
-        model = progressChart
+        model = progressModel
         exclude = ['date']
+        
+class liftForm(forms.ModelForm):
+    class Meta:
+        model = liftModel
+        exclude = ['date']
+        

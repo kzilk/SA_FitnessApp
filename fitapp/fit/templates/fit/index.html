@@ -3,10 +3,10 @@
 {% block content %}
     <div>
         <div>
-            <h1>BF Calculator: hip entry for women only</h1>
+            <h1>BF Calculator: leave 'Hips' entry at 0.0 if Male</h1>
             <form method="POST" action="">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form.as_div }}
                 <button type="submit">Calculate</button>
             </form>
     
@@ -20,17 +20,17 @@
 
     <div>
         <div>
-            <h1>Progress Input</h1>
-            <form method = "POST" class="post-form" enctype="multipart/form-data"> 
+            <h1>Weight Progress Input</h1>
+            <form method = "POST" class="post-form" enctype="multipart/form-data" action=""> 
                 {% csrf_token %}
-                {{ progress.as_p }}
+                {{ progress.as_div}}
                 <button type="submit" class="save btn btn-default">Save</button>
             </form>
         </div>
     </div>
     <div>
         <div>
-            <h2>Table</h2>
+            <h2>Weight Table</h2>
             <table>
                 <style>table, th, td {border: 1px solid black;}</style>
                 <thead>
@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
             <tbody>
-                {% for item in data %}
+                {% for item in weight_data %}
                 <tr>
                     <td>{{ item.id }}</td>
                     <td>{{ item.date }}</td>
@@ -51,7 +51,52 @@
                 </tr>
                 {% endfor %}
             </tbody>
-        </table>
+            </table>
+        </div>
+    </div>
+
+
+    <div>
+        <div>
+            <h1>Lift Progress Input</h1>
+            <form method = "POST" class="post-form" enctype="multipart/form-data" action=""> 
+                {% csrf_token %}
+                {{ lifts.as_div }}
+                <button type="submit" class="save btn btn-default">Save</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h2>Weight Table</h2>
+            <table>
+                <style>table, th, td {border: 1px solid black;}</style>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Date</th>
+                        <th>Bench</th>
+                        <th>OHP</th>
+                        <th>Squat</th>
+                        <th>Deadlift</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for item in lift_data %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.benchPR }}</td>
+                    <td>{{ item.ohpPR }}</td>
+                    <td>{{ item.squatPR }}</td>
+                    <td>{{ item.deadliftPR }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    
         
     
 {% endblock content %}
