@@ -21,7 +21,7 @@
     <div>
         <div>
             <h1>Weight Progress Input</h1>
-            <form method = "POST" class="post-form" enctype="multipart/form-data" action=""> 
+            <form method = "POST" action=""> 
                 {% csrf_token %}
                 {{ progress.as_div}}
                 <button type="submit" class="save btn btn-default">Save</button>
@@ -59,7 +59,7 @@
     <div>
         <div>
             <h1>Lift Progress Input</h1>
-            <form method = "POST" class="post-form" enctype="multipart/form-data" action=""> 
+            <form method = "POST" action=""> 
                 {% csrf_token %}
                 {{ lifts.as_div }}
                 <button type="submit" class="save btn btn-default">Save</button>
