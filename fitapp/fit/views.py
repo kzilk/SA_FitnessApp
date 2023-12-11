@@ -12,9 +12,8 @@ class Index(View):
         print(data)
         context = {'form':form, 'progress':prog, 'data':data}       
         return render(request, 'fit/index.html', context) 
-    
+   
     def post(self, request):
-        #handle bfCalculator
         form = bfCalcForm(request.POST)
         bfResult = None
 
