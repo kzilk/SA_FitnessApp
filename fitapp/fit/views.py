@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .forms import bfCalcForm, progressForm, liftForm
 from .models import progressModel, liftModel
@@ -51,6 +51,7 @@ class Index(View):
         if progress_form.is_valid():
             print('Progress Valid')
             progress_form.save() #save to database
+            return redirect(request.path)
         else:
             print('Progress invalid')
             print(progress_form.errors)
@@ -60,6 +61,7 @@ class Index(View):
         if lift_form.is_valid():
             print('lift valid')
             lift_form.save()
+            return redirect(request.path)
         else:
             print('Lift invalid')
             print(lift_form.errors)
