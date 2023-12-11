@@ -12,7 +12,7 @@ TO USE:
         python manage.py migrate
 
   To run the program
-   // python manage.py runserver
+   //linux: python3 manage.py runserver  //windows: py manage.py runserver
 
   Now, in your browser, enter '127.0.0.1:8000' in the url, this should load a page with three features so far: a body fat calculator, an input method to store your weight progress, and a table showing only the headers ID, date, bf, and weight.
 
