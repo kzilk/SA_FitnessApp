@@ -22,15 +22,14 @@ TO USE:
     
 
   Weight Progress Input: 
-    Here, you enter your bodyfat percentage which you can get from the above function and your current weight. Once done, click 'Save' and the page will load a blank table. Please reenter the URL '127.0.0.1:8000' and the entry will be displayed.
-        NOTE: do not refresh the page as that will resubmit the form resulting in duplicate entries
+    Here, you enter your bodyfat percentage which you can get from the above function and your current weight. Once done, click 'Save' and the page will load the new entry to the table below
 
   Lift Progress Input:
-    Similarly, here you enter your personal best lifts for each of these compound movements. You only need to enter one for it be be updated to the table, but you can fill out as many as have been accomplished. Like the previous, you will need to  reenter the URL '127.0.0.1:8000' for the entry to be displayed, and refreshing will result in a duplicate entry.
+    Similarly, here you enter your personal best lifts for each of these compound movements. You only need to enter one for it be be updated to the table, but you can fill out as many as have been accomplished. Once done, click 'Save' and the page will load the new entry to the table below
 
 
+TO BE CORRECTED: removal or skipping of the 'id' column in each table
 
-TO BE CORRECTED: Currently working to not require re-entering the URL in order to correctly view the table
 TO BE ADDED:
   Drop down menus to select training level eg novice, beginner, intermidiate etc, selection would return a suggested weightlifting routine for that level//
 
