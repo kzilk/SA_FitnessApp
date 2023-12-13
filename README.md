@@ -28,11 +28,4 @@ TO USE:
     Similarly, here you enter your personal best lifts for each of these compound movements. You only need to enter one for it be be updated to the table, but you can fill out as many as have been accomplished. Once done, click 'Save' and the page will load the new entry to the table below
 
 
-TO BE CORRECTED: removal or skipping of the 'id' column in each table
-
-TO BE ADDED:
-  Drop down menus to select training level eg novice, beginner, intermidiate etc, selection would return a suggested weightlifting routine for that level//
-
-  Drop down menu to select body part/region eg legs, arms, back, with possibly more specific parts to then return specified exercises, stretches, and form recommendations to improve or help recover training//
-
-  PreSet table with descriptions of recipes including macros, calories, and links to the websites showing them
+TO BE CORRECTED: removal or skipping of the 'id' column in each table, no longer displaying that fields are required in sections not being used.
