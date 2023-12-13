@@ -6,10 +6,7 @@ REQUIREMENTS
     https://docs.djangoproject.com/en/4.2/intro/install/
 
 TO USE:
-  After downloading the main file, open your terminal or command prompt and change the directory to the 'fitapp' folder.
-    Enter the following one at a time, pressing enter once done with each line. This will create the connected databases to store your saved data:
-        python manage.py makemigrations //
-        python manage.py migrate
+  After downloading and extracting the main file, open your terminal or command prompt and change the directory to the 'fitapp' folder.
 
   To run the program
    //linux: python3 manage.py runserver  //windows: py manage.py runserver
