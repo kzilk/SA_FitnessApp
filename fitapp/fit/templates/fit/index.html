@@ -86,5 +86,301 @@
         </tbody>
         </table>
     </div>
-    
+
+    <div>
+        <h1>Lift Progress Input</h1>
+        <form method = "POST" action="">
+            {% csrf_token %}
+            {{ lifts.as_div }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </div>
+    <div>
+        <h2>Lift Table</h2>
+        <table>
+            <style>table, th, td {border: 1px solid black;}</style>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Date</th>
+                    <th>Bench</th>
+                    <th>OHP</th>
+                    <th>Squat</th>
+                    <th>Deadlift</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for item in lift_data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.benchPR }}</td>
+                <td>{{ item.ohpPR }}</td>
+                <td>{{ item.squatPR }}</td>
+                <td>{{ item.deadliftPR }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+                    <!--Routine Options-->
+    <div>
+        <h2> Routine Options </h2>
+        <form method = "POST" action="">
+            {% csrf_token %}
+            <label for="{{routineRec.routine_choice.id_for_label}}">Select level:</label>
+            <select name="{{ routineRec.routine_choice.name }}" id="{{ routineRec.routine_choice.id_for_label }}">
+                {% for value, label in routineRec.routine_choice.field.choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        {% if routine_selection %}
+            {% if routine_selection == 'beginner'%}
+                <p>Starting Strength </p>
+                <p>Week 1</p>
+                <p>Monday - Workout A</p>
+                <p>Wednesday - Workout B</p>
+                <p>Friday - Workout A</p>
+
+                <p>Week 2</p>
+                <p>Monday - Workout B</p>
+                <p>Wednesday - Workout A</p>
+                <p>Friday - Workout B</p>
+
+                <p>Workout A</p>
+                <p>3x5 Squat</p>
+                <p>3x5 Bench Press</p>
+                <p>1x5 Deadlift</p>
+                <p>2x5-8 dips (add weight if doing >10 bodyweight dips)</p>
+
+                <p>Workout B</p>
+                <p>3x5 Squat</p>
+                <p>3x5 Standing Military Press</p>
+                <p>3x5 Pendlay Rows OR 5x3 Power Cleans</p>
+                <p>2x5-8 chinups (if doing Power Cleans do 3 sets)</p>
+
+                <p>Once at least three weeks in, on the last day of the week add the following:</p>
+                <p>2x8-12 Parallel Bar Dips OR Incline Skullcrushers</p>
+                <p>2x8-12 Barbell/DB/EZ-bar Curls</p>
+            {% elif routine_selection == 'intermediate' %}
+                <p>Push Pull Legs</p>
+                <p>Workout Push, Pull, Legs, repeat, then rest</p>
+
+                <p>Push:</p>
+                <p>3x5-7 Bench Press</p>
+                <p>3x8-10 Overhead Press</p>
+                <p>3x8-10 Incline Dumbell Press</p>
+                <p>3x8-10 Overhead Tricep Extentions</p>
+                <p>6x15 Dumbell Lateral Raises</p>
+                <p>3x8-10 Tricep Pushdowns</p>
+
+                <p>Pull:</p>
+                <p>3x5 Deadlift, Alternate with 3x8-10 Barbell Bent-Over Row</p>
+                <p>3x8-12 Dumbell Curls</p>
+                <p>3x8-12 Seated Cable Rows or Chest-Assisted Rows</p>
+                <p>3x8-10 Barbell/EZ-Bar Curls</p>
+                <p>3x15 Face Pulls</p>
+                <p>3x8-10 Rope Curls</p>
+
+                <p>Legs:</p>
+                <p>3x6-8 Squat</p>
+                <p>3x8-10 Romanian Deadlifts</p>
+                <p>2x10-12 Leg Press</p>
+                <p>3x15 Leg Curl</p>
+                <p>3x20 OR 3xTo Failure Leg Extentions</p>
+                <p>4x8-10 Calf Raises</p>
+            {% elif routine_selection == 'advanced' %}
+                <p>Split OR Super-Squat</p>
+
+                <p><strong>Split - High Volume</strong></p>
+
+                <p><strong>Monday - Shoulders</strong></p>
+                <p>4x8 Military Press</p>
+                <p>3x10 Barbell Front Raise</p>
+                <p>4x8 Upright Row</p>
+                <p>4x8 Dumbell Lateral Raise</p>
+                <p>3x10 Dumbell Reverse Fly</p>
+                <p>3xFailure Decline Sit-Ups</p>
+
+                <p><strong>Tuesday - Arms</strong></p>
+                <p>4x8 Barbell Curl</p>
+                <p>4x8 Standing Preacher Curls</p>
+                <p>3x8 Rope Curl</p>
+                <p>4x6 Close-Grip Bench Press</p>
+                <p>3x10 Tricep Dip</p>
+                <p>4x8 Skull Crusher</p>
+                <p>3x10 Wrist Curl</p>
+                <p>3xFailure Hanging Leg Raise</p>
+
+                <p><strong>Wednesday - Legs</strong></p>
+                <p>4x8 Squat</p>
+                <p>3x10 Leg Press</p>
+                <p>4x8-10 Leg Extention</p>
+                <p>4x8-10 Leg Curl</p>
+                <p>3x12-15 Seated Calf Raise</p>
+                <p>3x10-12 Calf Press</p>
+                <p>3xFailure Plank</p>
+
+                <p><strong>Thursday - Back</strong></p>
+                <p>4x8 Wide-Grip Pull Up</p>
+                <p>4x12 Seated Row</p>
+                <p>4x12 Lat Pull-Down</p>
+                <p>3x8 One-Arm Dumbell Row</p>
+                <p>3xFailure Decline Ab Reach</p>
+
+                <p><strong>Friday - Chest</strong></p>
+                <p>4x12 Bench Press</p>
+                <p>4x8 Incline Bench Press</p>
+                <p>4x15 Chest Dip</p>
+                <p>4x8 Dumbell Flys</p>
+                <p>3x20 Exercise Ball Crunch</p>
+
+                <hr>
+
+                <p><strong>Super Squat - High Intensity</strong></p>
+
+                <p>2-3 Times per Week</p>
+                <p>1x20 Squat - Start at what would be your working set of 10 or 10-rep max</p>
+                <p>1x20 Dumbell Pull-Over</p>
+                <p>3x12 Bench Press</p>
+                <p>3x12 Overhead Press</p>
+                <p>3x15 Barbell Rows</p>
+                <p>1x15 Stiff-Leg Deadlift</p>
+
+            {% endif %}
+        {% endif %}
+    </div>
+
+                    <!--Recovery/Targeting Options-->
+
+    <div>
+        <h2> Targeting Muscle Group and Stretching </h2>
+        <form method = "POST" action="">
+            {% csrf_token %}
+            <label for="{{ targetRec.target_choice.id_for_label}}">Select Muscle Group:</label>
+            <select name="{{ targetRec.target_choice.name }}" id="{{ targetRec.target_choice.id_for_label }}">
+                {% for value, label in targetRec.target_choice.field.choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        {% if target_selection %}
+            {% if target_selection == 'forearms'%}
+                <h2>Forearms</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Wrist Curls</p>
+                <p>Under AND Overhand Barbell/EZ-Bar Curls</p>
+                <p><strong>Stretch</strong></p>
+                <p>Extend arms foreword, palms facing out and back of hands touching, place one hand over the other,
+                    clapse your hands together and with the lower hand pull the upper wrist downwards and curl the
+                    upper wrist in, then alternate.</p>
+                <p><a href = "https://www.youtube.com/watch?v=OT-1mQSE3lw">Demonstration</a></p>
+            {% elif target_selection == 'biceps' %}
+                <h2>Biceps</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Curls: Concentration, Hammer, Dumbell, and Preacher</p>
+                <p><strong>Stretch</strong></p>
+                <p>Start with your palm down and extend it behind you onto a surface with a straight elbow,
+                    contract your tricep and and angle so it is angled slightly outward rather than directly behind</p>
+                <p><a href = "https://www.youtube.com/watch?v=_e1hQUxTAHc">Demonstration</a></p>
+            {% elif target_selection == 'triceps' %}
+                <h2>Triceps</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Tricep Pushdowns</p>
+                <p>Overhead Tricep Extentions</p>
+                <p>Skullcrushers</p>
+                <p>French Press (Dumbell Skullcrushers)</p>
+                <p><strong>Stretch</strong></p>
+                <p>Extend your elbow in front of you, turn your arm inward and bring the back of your hand to your chest,
+                    slowly press your wrist towards your armpit to make your elbow close as much as possible without causing pain</p>
+                <p>Place your elbow on a wall to your side and grab your shoulderblade under this extended arm,
+                    pull down on the shoulderblade and lean your body into the wall</p>
+                <p><a href = "https://www.youtube.com/watch?v=yAvpW_zKJmI">Demonstration</a></p>
+            {% elif target_selection == 'shoulders' %}
+                <h2>Shoulders</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Front Delt - Overhead Press / Incline Press</p>
+                <p>Side Delt - Lateral Dumbell Raises</p>
+                <p>Rear Delt - Face Pull </p>
+                <p><strong>Stretch</strong></p>
+                <p>Front Delt - Position hands together behind you, palms outward, touching your lower back. Raise them up along your back while sticking out your chest</p>
+                <p>Middle Delt - Hold your arm across and flat against your chest, pulling down on your elbow with the opposing hand as you stretch against your chest.</p>
+                <p>Rear Delt - Hold your arm across your chest, and with the opposite hand scoop under your elbow and upwards while keeping your shoulder angle low</p>
+                <p><a href = "https://www.youtube.com/watch?v=KBLsNbolr_c">Demonstration</a></p>
+            {% elif target_selection == 'chest' %}
+                <h2>Chest</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Bench - Barbell or Dumbell</p>
+                <p>Flys - Seated Cable or Dumbell on Floor</p>
+                <p><strong>Stretch</strong></p>
+                <p><a href = "https://www.youtube.com/watch?v=SV7l1sfEmO0">Demonstration</a></p>
+            {% elif target_selection == 'back' %}
+                <h2>Back</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Trapezoid - Barbell Row, Chest-Assited Row, Cable Row</p>
+                <p>Lats - Lat-Pulldown, Wide-Grip Pullup, Iso-Lateral Lat Pulldown</p>
+                <p>Minor - place the inside of your shoulder against something sturdy, place your palm agaist it above to retract your shoulder blade and slide your hand up along the surface.</p>
+                <p>Minor - place the inside of your shoulder against something sturdy, raise your arm up to 90 degrees and lean forward into it while looking away and down.</p>
+                <p><strong>Stretch</strong></p>
+                <p><a href = "https://www.youtube.com/watch?v=dNOMmQARQTQ">Demonstration</a></p>
+            {% elif target_selection == 'quads' %}
+                <h2>Quads</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Leg Press, Squat, Leg Extentions</p>
+                <p><strong>Stretch</strong></p>
+                <p>Lay on your side on the ground, position your lower leg forward to a 90 degree angle, and hold the ankle of your upper leg behind you and pull back.  </p>
+                <p><a href = "https://www.youtube.com/watch?v=2hKbghN2fUE">Demonstration</a></p>
+            {% elif target_selection == 'hamstrings' %}
+                <h2>Hamstrings</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Romanian/Stiff-Leg Deadlift, Leg Curl</p>
+                <p><strong>Stretch</strong></p>
+                <p>Place your leg forward  with your foot tilted upwards to a solid wall or surface and extend your opposite leg behind you. Keep your back straight and lean forward with your arms extended straight out above your head to the wall and slide upwards along the wall.</p>
+                <p><a href = "https://youtu.be/u1sfPfsESDQ?si=n1SmiaKwszyCrpyv&t=285">Demonstration</a></p>
+            {% elif target_selection == 'calves' %}
+                <h2>Calves</h2>
+                <p><strong>Targeting Exercises</strong></p>
+                <p>Calf-Raises, Stairs</p>
+                <p><strong>Stretch</strong></p>
+                <p>Place your toes on a wall in front of you with your heel on the ground, slowly move your knee towards the wall to stretch out your calf</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+            <!-- Recipe Table -->
+
+    <div>
+        <h2>Recipe Table</h2>
+        <table>
+            <style>table, th, td {border: 1px solid black;}</style>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Calories</th>
+                    <th>Protein (g)</th>
+                    <th>Fat (g)</th>
+                    <th>Carbs (g)</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for item in recipe_data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name}}</td>
+                <td>{{ item.calories }}</td>
+                <td>{{ item.protein }}</td>
+                <td>{{ item.fat }}</td>
+                <td>{{ item.carbs }}</td>
+                <td>{{ item.link }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
 {% endblock content %}

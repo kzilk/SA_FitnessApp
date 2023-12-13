@@ -26,3 +26,15 @@ class liftModel(models.Model):
 
     class Meta:
         db_table = "lifts"
+
+
+class recipeModel(models.Model):
+    name = models.CharField(max_length=50)
+    calories = models.IntegerField()
+    protein = models.DecimalField(max_digits=4, decimal_places=1)
+    fat = models.DecimalField(max_digits=4, decimal_places=1)
+    carbs = models.DecimalField(max_digits=4, decimal_places=1)
+    link = models.URLField(max_length=200)
+
+    class Meta:
+        db_table = "recipes"
