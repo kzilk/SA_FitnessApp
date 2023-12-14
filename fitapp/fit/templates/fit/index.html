@@ -1,12 +1,13 @@
 {% extends "fit/base.html" %}
 
 {% block content %}
+                    <!--BODYFAT CALCULATOR-->
     <div>
         <h1>BF Calculator: leave 'Hips' entry at 0.0 if Male</h1>
         <form method="POST" action="">
             {% csrf_token %}
             {{ form.as_div }}
-            <button type="submit">Calculate</button>
+            <button type="submit" name = "bfButton">Calculate</button>
         </form>
 
         {% if bfResult %}
@@ -16,12 +17,13 @@
         {% endif %}
     </div>
 
+                    <!--WEIGHT PROGRESS INPUT-->
     <div>       
         <h1>Weight Progress Input</h1>
         <form method = "POST" action=""> 
             {% csrf_token %}
             {{ progress.as_div}}
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default" name="weightButton">Save</button>
         </form>
     </div>
     <div>
@@ -30,7 +32,7 @@
             <style>table, th, td {border: 1px solid black;}</style>
             <thead>
                 <tr>
-                    <th>id</th>
+                    
                     <th>date</th>
                     <th>bf</th>
                     <th>weight</th>
@@ -39,7 +41,7 @@
         <tbody>
             {% for item in weight_data %}
             <tr>
-                <td>{{ item.id }}</td>
+                
                 <td>{{ item.date }}</td>
                 <td>{{ item.bodyFat }}</td>
                 <td>{{ item.weight }}</td>
@@ -48,51 +50,13 @@
         </tbody>
         </table>
     </div>
-
-
-    <div>
-        <h1>Lift Progress Input</h1>
-        <form method = "POST" action=""> 
-            {% csrf_token %}
-            {{ lifts.as_div }}
-            <button type="submit" class="save btn btn-default">Save</button>
-        </form>
-    </div>
-    <div> 
-        <h2>Weight Table</h2>
-        <table>
-            <style>table, th, td {border: 1px solid black;}</style>
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Date</th>
-                    <th>Bench</th>
-                    <th>OHP</th>
-                    <th>Squat</th>
-                    <th>Deadlift</th>
-                </tr>
-            </thead>
-        <tbody>
-            {% for item in lift_data %}
-            <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.date }}</td>
-                <td>{{ item.benchPR }}</td>
-                <td>{{ item.ohpPR }}</td>
-                <td>{{ item.squatPR }}</td>
-                <td>{{ item.deadliftPR }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        </table>
-    </div>
-
+                        <!--LIFT PROGRESS INPUT-->
     <div>
         <h1>Lift Progress Input</h1>
         <form method = "POST" action="">
             {% csrf_token %}
             {{ lifts.as_div }}
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default" name="liftButton">Save</button>
         </form>
     </div>
     <div>
@@ -101,7 +65,6 @@
             <style>table, th, td {border: 1px solid black;}</style>
             <thead>
                 <tr>
-                    <th>id</th>
                     <th>Date</th>
                     <th>Bench</th>
                     <th>OHP</th>
@@ -112,7 +75,6 @@
         <tbody>
             {% for item in lift_data %}
             <tr>
-                <td>{{ item.id }}</td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.benchPR }}</td>
                 <td>{{ item.ohpPR }}</td>
@@ -124,7 +86,7 @@
         </table>
     </div>
 
-                    <!--Routine Options-->
+                                <!--ROUTINE OPTIONS-->
     <div>
         <h2> Routine Options </h2>
         <form method = "POST" action="">
@@ -135,7 +97,7 @@
                     <option value="{{ value }}">{{ label }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Submit</button>
+            <button type="submit" name='routineButton'>Submit</button>
         </form>
         {% if routine_selection %}
             {% if routine_selection == 'beginner'%}
@@ -254,7 +216,7 @@
         {% endif %}
     </div>
 
-                    <!--Recovery/Targeting Options-->
+                                <!--RECOVERY/TARGETING OPTIONS-->
 
     <div>
         <h2> Targeting Muscle Group and Stretching </h2>
@@ -266,7 +228,7 @@
                     <option value="{{ value }}">{{ label }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Submit</button>
+            <button type="submit" name="targetButton">Submit</button>
         </form>
         {% if target_selection %}
             {% if target_selection == 'forearms'%}
