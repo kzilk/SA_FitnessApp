@@ -240,7 +240,7 @@
                 <p>Extend arms foreword, palms facing out and back of hands touching, place one hand over the other,
                     clapse your hands together and with the lower hand pull the upper wrist downwards and curl the
                     upper wrist in, then alternate.</p>
-                <p><a href = "https://www.youtube.com/watch?v=OT-1mQSE3lw">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=OT-1mQSE3lw" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'biceps' %}
                 <h2>Biceps</h2>
                 <p><strong>Targeting Exercises</strong></p>
@@ -248,7 +248,7 @@
                 <p><strong>Stretch</strong></p>
                 <p>Start with your palm down and extend it behind you onto a surface with a straight elbow,
                     contract your tricep and and angle so it is angled slightly outward rather than directly behind</p>
-                <p><a href = "https://www.youtube.com/watch?v=_e1hQUxTAHc">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=_e1hQUxTAHc" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'triceps' %}
                 <h2>Triceps</h2>
                 <p><strong>Targeting Exercises</strong></p>
@@ -261,7 +261,7 @@
                     slowly press your wrist towards your armpit to make your elbow close as much as possible without causing pain</p>
                 <p>Place your elbow on a wall to your side and grab your shoulderblade under this extended arm,
                     pull down on the shoulderblade and lean your body into the wall</p>
-                <p><a href = "https://www.youtube.com/watch?v=yAvpW_zKJmI">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=yAvpW_zKJmI" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'shoulders' %}
                 <h2>Shoulders</h2>
                 <p><strong>Targeting Exercises</strong></p>
@@ -272,14 +272,14 @@
                 <p>Front Delt - Position hands together behind you, palms outward, touching your lower back. Raise them up along your back while sticking out your chest</p>
                 <p>Middle Delt - Hold your arm across and flat against your chest, pulling down on your elbow with the opposing hand as you stretch against your chest.</p>
                 <p>Rear Delt - Hold your arm across your chest, and with the opposite hand scoop under your elbow and upwards while keeping your shoulder angle low</p>
-                <p><a href = "https://www.youtube.com/watch?v=KBLsNbolr_c">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=KBLsNbolr_c" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'chest' %}
                 <h2>Chest</h2>
                 <p><strong>Targeting Exercises</strong></p>
                 <p>Bench - Barbell or Dumbell</p>
                 <p>Flys - Seated Cable or Dumbell on Floor</p>
                 <p><strong>Stretch</strong></p>
-                <p><a href = "https://www.youtube.com/watch?v=SV7l1sfEmO0">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=SV7l1sfEmO0" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'back' %}
                 <h2>Back</h2>
                 <p><strong>Targeting Exercises</strong></p>
@@ -288,21 +288,21 @@
                 <p>Minor - place the inside of your shoulder against something sturdy, place your palm agaist it above to retract your shoulder blade and slide your hand up along the surface.</p>
                 <p>Minor - place the inside of your shoulder against something sturdy, raise your arm up to 90 degrees and lean forward into it while looking away and down.</p>
                 <p><strong>Stretch</strong></p>
-                <p><a href = "https://www.youtube.com/watch?v=dNOMmQARQTQ">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=dNOMmQARQTQ" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'quads' %}
                 <h2>Quads</h2>
                 <p><strong>Targeting Exercises</strong></p>
                 <p>Leg Press, Squat, Leg Extentions</p>
                 <p><strong>Stretch</strong></p>
                 <p>Lay on your side on the ground, position your lower leg forward to a 90 degree angle, and hold the ankle of your upper leg behind you and pull back.  </p>
-                <p><a href = "https://www.youtube.com/watch?v=2hKbghN2fUE">Demonstration</a></p>
+                <p><a href = "https://www.youtube.com/watch?v=2hKbghN2fUE" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'hamstrings' %}
                 <h2>Hamstrings</h2>
                 <p><strong>Targeting Exercises</strong></p>
                 <p>Romanian/Stiff-Leg Deadlift, Leg Curl</p>
                 <p><strong>Stretch</strong></p>
                 <p>Place your leg forward  with your foot tilted upwards to a solid wall or surface and extend your opposite leg behind you. Keep your back straight and lean forward with your arms extended straight out above your head to the wall and slide upwards along the wall.</p>
-                <p><a href = "https://youtu.be/u1sfPfsESDQ?si=n1SmiaKwszyCrpyv&t=285">Demonstration</a></p>
+                <p><a href = "https://youtu.be/u1sfPfsESDQ?si=n1SmiaKwszyCrpyv&t=285" target='_blank'>Demonstration</a></p>
             {% elif target_selection == 'calves' %}
                 <h2>Calves</h2>
                 <p><strong>Targeting Exercises</strong></p>
@@ -321,7 +321,6 @@
             <style>table, th, td {border: 1px solid black;}</style>
             <thead>
                 <tr>
-                    <th>id</th>
                     <th>Name</th>
                     <th>Calories</th>
                     <th>Protein (g)</th>
@@ -333,13 +332,12 @@
         <tbody>
             {% for item in recipe_data %}
             <tr>
-                <td>{{ item.id }}</td>
                 <td>{{ item.name}}</td>
                 <td>{{ item.calories }}</td>
                 <td>{{ item.protein }}</td>
                 <td>{{ item.fat }}</td>
                 <td>{{ item.carbs }}</td>
-                <td>{{ item.link }}</td>
+                <td><a href="{{ item.link }}" target='_blank'>{{ item.name}} Recipe</a></td>
             </tr>
             {% endfor %}
         </tbody>

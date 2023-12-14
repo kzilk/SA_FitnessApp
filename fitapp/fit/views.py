@@ -16,13 +16,10 @@ class Index(View):
 
 
         weight_data = progressModel.objects.all()
-        print(weight_data)
 
         lift_data = liftModel.objects.all()
-        print(lift_data)
-
+       
         recipe_data = recipeModel.objects.all()
-        print(recipe_data)
 
         context = {'form':form, 'progress':weightProg, 'lifts':liftProg,
                    'weight_data':weight_data, 'lift_data':lift_data, 'routineRec':routineRec,
@@ -32,10 +29,13 @@ class Index(View):
     def post(self, request):
         bfResult = None
         form = bfCalcForm()
+        
         progress_form = progressForm()
         lift_form = liftForm()
+        
         routineRec = routineForm()
         routine_selection = None
+        
         targetRec = targetForm()
         target_selection = None
 
@@ -50,8 +50,6 @@ class Index(View):
 
                 logH = math.log10(bfHeight)
 
-                # 163.205×log10(waist+hip-neck) - 97.684×(log10(height)) - 78.387
-
                 if bfHip > 0:
                     logWHN = math.log10(bfWaist + bfHip - bfNeck)
                     result = 163.205 * logWHN - 97.684 * (logH) - 78.387
@@ -60,8 +58,6 @@ class Index(View):
                     logWN = math.log10(bfWaist - bfNeck)
                     result = 86.010 * logWN - 70.041 * logH + 36.76
                     bfResult = round(result, 2)
-
-                print("Form valid")
             else:
                 print("Form is not valid")
                 print(form.errors)
@@ -113,13 +109,13 @@ class Index(View):
         context = {'bfResult': bfResult, 
                    'form': form, 
                    'progress': progress_form, 
+                   'weight_data': weight_data,
                    'lifts': lift_form,
-                   'routine': routineRec, 
+                   'lift_data': lift_data,
+                   'routineRec': routineRec, 
                    'routine_selection': routine_selection, 
                    'targetRec': targetRec,
                    'target_selection': target_selection,
-                   'weight_data': weight_data,
-                   'lift_data': lift_data,
                    'recipe_data': recipe_data}
                     
         return render(request, 'fit/index.html', context)
