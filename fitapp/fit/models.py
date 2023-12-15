@@ -18,10 +18,10 @@ class liftModel(models.Model):
     deadliftPR = models.IntegerField("Enter new deadlift record", null=True, blank=True)
     
     def clean(self):
-        super().clean()
         #add validation that at least 1 lift entry is set, prevents false entries
-        min_entry = [entry for entry in [self.benchPR, self.ohpPR, self.squatPR, self.deadliftPR] if entry is not None]
-        if not min_entry:
+        
+        entries = [self.benchPR, self.ohpPR, self.squatPR, self.deadliftPR]
+        if not all(entries):
             raise ValidationError('One must be filled')
 
     class Meta:
