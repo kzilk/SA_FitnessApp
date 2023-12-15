@@ -2,13 +2,13 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 # Create your models here.
-class progressModel(models.Model):
+class weightModel(models.Model):
     date = models.DateField(auto_now=True)
     bodyFat = models.DecimalField("Enter Bodyfat Percentage", max_digits=4,decimal_places=2)
     weight = models.IntegerField("Enter weight")
     
     class Meta:
-        db_table = "progress"
+        db_table = "weight"
 
 class liftModel(models.Model):
     date = models.DateField(auto_now=True)

@@ -1,55 +1,70 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import bfCalcForm, progressForm, liftForm, routineForm, targetForm, recipeForm
-from .models import progressModel, liftModel, recipeModel
+from .forms import bfCalcForm, weightForm, liftForm, routineForm, targetForm, recipeForm
+from .models import weightModel, liftModel, recipeModel
 import math
     
 class Index(View):
     def get(self, request):
-
-        form = bfCalcForm()
-        weightProg = progressForm()
+        
+        #set forms to variables to load context
+        bfForm = bfCalcForm()
+        weightProg = weightForm()
         liftProg = liftForm()
         routineRec = routineForm()
         targetRec = targetForm()
         recipeRec = recipeForm()
 
-
-        weight_data = progressModel.objects.all()
-
+        #set objects in models from tables as variables to ensure stored data is printed
+        weight_data = weightModel.objects.all()
         lift_data = liftModel.objects.all()
-       
         recipe_data = recipeModel.objects.all()
 
-        context = {'form':form, 'progress':weightProg, 'lifts':liftProg,
-                   'weight_data':weight_data, 'lift_data':lift_data, 'routineRec':routineRec,
-                   'targetRec':targetRec, 'recipeRec':recipeRec, 'recipe_data':recipe_data}
-        return render(request, 'fit/index.html', context) 
+        #set context for data to load
+        context = {'bfForm':bfForm, 
+                   'weight':weightProg, 
+                   'weight_data':weight_data, 
+                   'lifts':liftProg,
+                   'lift_data':lift_data, 
+                   'routineRec':routineRec,
+                   'targetRec':targetRec, 
+                   'recipeRec':recipeRec, 
+                   'recipe_data':recipe_data}
+        
+        #return on screen at path, shows when first loading page
+        return render(request,'fit/index.html', context) 
    
     def post(self, request):
+        #initialize bodyfat data
         bfResult = None
-        form = bfCalcForm()
+        bfForm = bfCalcForm()
         
-        progress_form = progressForm()
+        #initialize chart data
+        weight_form = weightForm()
         lift_form = liftForm()
         
+        #initialize routine data
         routineRec = routineForm()
         routine_selection = None
         
+        #initialize routine data
         targetRec = targetForm()
         target_selection = None
 
+        #check which button was pressed:
         if 'bfButton' in request.POST:
-            form = bfCalcForm(request.POST)
-            if form.is_valid():
+            bfForm = bfCalcForm(request.POST)
+            #run bodyfat calucations and validation if button pressed
+            if bfForm.is_valid():
                 # process bfCalc data and perform calculations
-                bfHeight = int(form.cleaned_data['height'])
-                bfWaist = int(form.cleaned_data['waist'])
-                bfNeck = int(form.cleaned_data['neck'])
-                bfHip = int(form.cleaned_data['hips'])
+                bfHeight = int(bfForm.cleaned_data['height'])
+                bfWaist = int(bfForm.cleaned_data['waist'])
+                bfNeck = int(bfForm.cleaned_data['neck'])
+                bfHip = int(bfForm.cleaned_data['hips'])
 
                 logH = math.log10(bfHeight)
 
+                #check if hip entry for male or female, run appropriate calculation
                 if bfHip > 0:
                     logWHN = math.log10(bfWaist + bfHip - bfNeck)
                     result = 163.205 * logWHN - 97.684 * (logH) - 78.387
@@ -59,33 +74,30 @@ class Index(View):
                     result = 86.010 * logWN - 70.041 * logH + 36.76
                     bfResult = round(result, 2)
             else:
-                print("Form is not valid")
-                print(form.errors)
+                print("Bodyfat form is not valid")
+                print(bfForm.errors)
 
         elif 'weightButton' in request.POST:
-            # handle update weight progress
-            progress_form = progressForm(request.POST)
-            if progress_form.is_valid():
-                print('Progress Valid')
-                progress_form.save()  # save to database
-                return redirect(request.path) #refresh page to view updated table
+            # check if weight table input button pressed, save data to table if good entry
+            weight_form = weightForm(request.POST)
+            if weight_form.is_valid():
+                weight_form.save()  # save to database
             else:
-                print('Progress invalid')
-                print(progress_form.errors)
+                print('Weight entry invalid')
+                print(weight_form.errors)
 
         elif 'liftButton' in request.POST:
-            # handle update lift progress
+            # check if lift table input button pressed, save data to table if good entry
             lift_form = liftForm(request.POST)
             if lift_form.is_valid():
                 print('lift valid')
                 lift_form.save()
-                return redirect(request.path) #refresh page to view updated table
             else:
                 print('Lift invalid')
                 print(lift_form.errors)
 
         elif 'routineButton' in request.POST:
-            # handle routine selection
+            # check which routine seletect and display
             routineRec = routineForm(request.POST)
             if routineRec.is_valid():
                 routine_selection = routineRec.cleaned_data['routine_choice']
@@ -94,7 +106,7 @@ class Index(View):
                 print(routineRec.errors)
             
         elif 'targetButton' in request.POST:
-            # handle targeting muscle group
+            # check which muscle group selected and display
             targetRec = targetForm(request.POST)
             if targetRec.is_valid():
                 target_selection = targetRec.cleaned_data['target_choice']
@@ -102,13 +114,15 @@ class Index(View):
                 print('Target invalid')
                 print(targetRec.errors)
 
-        weight_data = progressModel.objects.all()
+        #set table values from models for context, place here so any updates above are read
+        weight_data = weightModel.objects.all()
         lift_data = liftModel.objects.all()
         recipe_data = recipeModel.objects.all()
         
+        #set context again with new potential return data, need all points to ensure specific return is used
         context = {'bfResult': bfResult, 
-                   'form': form, 
-                   'progress': progress_form, 
+                   'bfForm': bfForm, 
+                   'weight': weight_form, 
                    'weight_data': weight_data,
                    'lifts': lift_form,
                    'lift_data': lift_data,
@@ -118,4 +132,5 @@ class Index(View):
                    'target_selection': target_selection,
                    'recipe_data': recipe_data}
                     
+        #show on screen, now includes return data and happens after selection is made
         return render(request, 'fit/index.html', context)

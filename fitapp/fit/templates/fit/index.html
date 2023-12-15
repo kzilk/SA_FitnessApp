@@ -3,10 +3,10 @@
 {% block content %}
                     <!--BODYFAT CALCULATOR-->
     <div>
-        <h1>BF Calculator: leave 'Hips' entry at 0.0 if Male</h1>
+        <h1>BF Calculator: enter as inches, leave 'Hips' entry at 0.0 if Male</h1>
         <form method="POST" action="">
             {% csrf_token %}
-            {{ form.as_div }}
+            {{ bfForm.as_div }}
             <button type="submit" name = "bfButton">Calculate</button>
         </form>
 
@@ -22,7 +22,7 @@
         <h1>Weight Progress Input</h1>
         <form method = "POST" action=""> 
             {% csrf_token %}
-            {{ progress.as_div}}
+            {{ weight.as_div}}
             <button type="submit" class="save btn btn-default" name="weightButton">Save</button>
         </form>
     </div>
@@ -32,7 +32,6 @@
             <style>table, th, td {border: 1px solid black;}</style>
             <thead>
                 <tr>
-                    
                     <th>date</th>
                     <th>bf</th>
                     <th>weight</th>
@@ -41,7 +40,6 @@
         <tbody>
             {% for item in weight_data %}
             <tr>
-                
                 <td>{{ item.date }}</td>
                 <td>{{ item.bodyFat }}</td>
                 <td>{{ item.weight }}</td>

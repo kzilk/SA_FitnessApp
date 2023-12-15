@@ -1,5 +1,5 @@
 from django import forms
-from fit.models import progressModel, liftModel, recipeModel
+from fit.models import weightModel, liftModel, recipeModel
 
 class bfCalcForm(forms.Form):
     height = forms.FloatField()
@@ -7,9 +7,9 @@ class bfCalcForm(forms.Form):
     neck = forms.FloatField()
     hips = forms.FloatField(initial=0.0)
     
-class progressForm(forms.ModelForm):
+class weightForm(forms.ModelForm):
     class Meta:
-        model = progressModel
+        model = weightModel
         exclude = ['date']
         
 class liftForm(forms.ModelForm):
