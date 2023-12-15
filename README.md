@@ -24,5 +24,11 @@ TO USE:
   Lift Progress Input:
     Similarly, here you enter your personal best lifts for each of these compound movements. You only need to enter one for it be be updated to the table, but you can fill out as many as have been accomplished. Once done, click 'Save' and the page will load the new entry to the table below
 
+Routine Options: 
+  Select your level of experience and enter 'Submit' to view a potential routine.
 
-TO BE CORRECTED: removal or skipping of the 'id' column in each table, no longer displaying that fields are required in sections not being used.
+Target Muscle Group:
+  From the drop down menu, select a muscle group and it will display particular exercises for targeting that muscle along with stretching options.
+
+Recipe Table:
+  here are several healthy recipes with their macros listed
